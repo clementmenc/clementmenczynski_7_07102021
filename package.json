@@ -1,0 +1,23 @@
+{
+  "name": "p7_menczynski_clement",
+  "version": "1.0.0",
+  "description": "Projet 7 de la formation developpeur front-end de OpenClassrooms",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss ./css/style.css --style compressed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clementmenc/clementmenczynski_7_07102021.git"
+  },
+  "author": "Clément Menczynski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clementmenc/clementmenczynski_7_07102021/issues"
+  },
+  "homepage": "https://github.com/clementmenc/clementmenczynski_7_07102021#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "sass": "^1.42.1"
+  }
+}
