@@ -2,7 +2,7 @@
   "name": "p7_menczynski_clement",
   "version": "1.0.0",
   "description": "Projet 7 de la formation developpeur front-end de OpenClassrooms",
-  "main": "index.js",
+  "main": "js/main.js",
   "scripts": {
     "sass": "sass --watch ./sass/main.scss ./css/style.css --style compressed"
   },

@@ -1,0 +1,73 @@
+// --------------------------------------------------
+// Style des recettes sur page de recherche
+// --------------------------------------------------
+
+.recipes{
+    background-color: $grey;
+    border-radius: $borderRadius;
+    
+    overflow: hidden;
+    cursor: pointer;
+
+    &__img{
+        width: 100%;
+        height: 178px;
+        overflow: hidden;
+        object-fit: cover;
+    }
+
+    &__description{
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        padding: 25px 22px;
+
+        &__top{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            @media screen and (min-width: $mobile){
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+        }
+
+        &__bottom{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            @media screen and (min-width: $mobile){
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 20px;
+            }
+        }
+
+        .name{ font-weight: 400; font-size: 1.125rem; }
+        .duration{
+            font-weight: 600;
+            font-size: 1.25rem;
+
+            .far{ margin-right: 8px; }
+        }
+
+        .ingredients-list{
+            display: block;
+            flex-shrink: 0;
+
+            font-size: .75rem;
+
+            &__item span{
+                font-weight: 600;
+            }
+        }
+
+        .process{
+            font-size: .75rem;
+        }
+    }
+
+}

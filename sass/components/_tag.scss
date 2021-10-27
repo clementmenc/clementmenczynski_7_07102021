@@ -1,0 +1,25 @@
+// --------------------------------------------------
+// Tag style
+// --------------------------------------------------
+
+.tag{
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 20px;
+    border-radius: $borderRadius;
+
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    color: $white;
+
+    &.tag-ingredients{ background-color: $blue; }
+    &.tag-appareil{ background-color: $green; }
+    &.tag-ustensiles{ background-color: $orange; }
+
+    &__icon{
+        font-size: 1.25rem;
+        cursor: pointer;
+    }
+}
