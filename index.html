@@ -23,6 +23,7 @@
         <i class="fas fa-search search-principal__icon"></i>
     </section>
 
+    <!-- <div id="test"></div> -->
     <!-- Liste des tags actif -->
     <ul class="tags-list">
         <li class="tag tag-ingredients">Ingrédients<i class="far fa-times-circle tag__icon"></i></li>
@@ -31,12 +32,13 @@
     </ul>
 
     <!-- Filtre déroulant de recherche -->
-    <section class="filters-dropdown">
-        <div class="dropdown-item dd-blue" onclick="toggleDropDown(this)" data-state="close">
-            <input type="text" class="dropdown-item__input" name="ingredients-input" id="ingredients-input" placeholder="Rechercher un ingrédient">
-            <p class="dropdown-item__label">Ingrédients</p>
+    <section id="filters-dropdown" class="filters-dropdown">
+
+        <!-- <div class="dropdown-item dd-ingredient" onclick="toggleDropDown(this)" data-state="close">
+            <input type="text" class="dropdown-item__input" name="ingredient-input" id="ingredient-input" placeholder="Rechercher un ingrédient">
+            <p class="dropdown-item__label">ingrédients</p>
             <i class="fas fa-chevron-down dropdown-item__icon"></i>
-            <ul class="dropdown-item__list ingredients-dropdown">
+            <ul class="dropdown-item__list ingredient-dropdown">
                 <li>Lait de coco</li>
                 <li>Sucre</li>
                 <li>Concombre</li>
@@ -69,11 +71,12 @@
                 <li>Beurre</li>
             </ul>
         </div>
-        <div class="dropdown-item dd-green" onclick="toggleDropDown(this)" data-state="close">
-            <input type="text" class="dropdown-item__input" name="ingredients-input" id="ingredients-input" placeholder="Rechercher un ingrédient">
-            <p class="dropdown-item__label">Appareil</p>
+
+        <div class="dropdown-item dd-appareil" onclick="toggleDropDown(this)" data-state="close">
+            <input type="text" class="dropdown-item__input" name="appareil-input" id="appareil-input" placeholder="Rechercher un appareil">
+            <p class="dropdown-item__label">appareil</p>
             <i class="fas fa-chevron-down dropdown-item__icon"></i>
-            <ul class="dropdown-item__list ingredients-dropdown">
+            <ul class="dropdown-item__list appareil-dropdown">
                 <li>Lait de coco</li>
                 <li>Sucre</li>
                 <li>Concombre</li>
@@ -106,11 +109,12 @@
                 <li>Beurre</li>
             </ul>
         </div>
-        <div class="dropdown-item dd-orange" onclick="toggleDropDown(this)" data-state="close">
-            <input type="text" class="dropdown-item__input" name="ingredients-input" id="ingredients-input" placeholder="Rechercher un ingrédient">
-            <p class="dropdown-item__label">Ingrédients</p>
+
+        <div class="dropdown-item dd-ustensil" onclick="toggleDropDown(this)" data-state="close">
+            <input type="text" class="dropdown-item__input" name="ustensil-input" id="ustensil-input" placeholder="Rechercher un ustensile">
+            <p class="dropdown-item__label">ustensiles</p>
             <i class="fas fa-chevron-down dropdown-item__icon"></i>
-            <ul class="dropdown-item__list ingredients-dropdown">
+            <ul class="dropdown-item__list ustensil-dropdown">
                 <li>Lait de coco</li>
                 <li>Sucre</li>
                 <li>Concombre</li>
@@ -142,7 +146,8 @@
                 <li>Sucre en poudre</li>
                 <li>Beurre</li>
             </ul>
-        </div>
+        </div> -->
+
     </section>
 
     <!-- Cartes des recettes -->
@@ -229,15 +234,5 @@
         </article>
     </section>
 
-    <!-- Script de dev -->
-    <script>
-        const toggleDropDown = (e) => {
-            if(e.getAttribute('data-state') === "open"){
-                e.setAttribute('data-state', 'close')
-            }else{
-                e.setAttribute('data-state', 'open')
-            }
-        }
-    </script>
 </body>
 </html>
