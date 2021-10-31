@@ -1,4 +1,4 @@
-import utils from "../modules/_utils.js";
+import utils from "../utils/_utils.js";
 
 export default class FilterDropdown{
     constructor(type, items) {
@@ -71,6 +71,8 @@ export default class FilterDropdown{
         FilterDropdown.instances.forEach(dropdown => {
             if (dropdown.element.getAttribute('data-state') === 'open' && dropdown.element !== this.element) {
                 dropdown.element.setAttribute('data-state', 'close')
+                document.removeEventListener('click', dropdown.close);
+                dropdown.element.addEventListener('click', dropdown.open);
             }
         })
 
@@ -88,7 +90,7 @@ export default class FilterDropdown{
      */
     close = (e) => {
         
-        if (utils.clickOut(e.target, this.element) || e.target == this.closeIcon) {
+        if (utils.clickOut(e.target, this.element) || e.target === this.closeIcon) {
             this.element.setAttribute('data-state', 'close');
 
             document.removeEventListener('click', this.close);

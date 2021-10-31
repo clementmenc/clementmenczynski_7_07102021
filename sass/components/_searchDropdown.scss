@@ -42,20 +42,30 @@
     }
 
     &__list{
-        position: absolute;
-        top: 60px;
-        left: 0;
-        padding: 20px;
-        border-radius: $borderRadius;
+        grid-area: 2 / 1 / 2 / 3;
         width: 100%;
         background-color: inherit;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr;
         display: none;
-        gap: 5px;
+        gap: 5px 35px;
         height: 305px;
         overflow: auto;
         z-index: 2;
-        
+
+        @media screen and (min-width: $tablet){
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media screen and (min-width: $desktop){
+            grid-area: auto;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            padding: 20px;
+            border-radius: $borderRadius;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
         & li::first-letter{
             text-transform: capitalize;
         }

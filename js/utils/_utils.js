@@ -5,7 +5,7 @@
  * @returns {boolean}
  */
 const clickOut = (target, ref) => {
-    return ref.contains(target) ? false : true;
+    return !ref.contains(target)
 }
 
 

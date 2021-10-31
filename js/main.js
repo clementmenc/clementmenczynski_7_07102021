@@ -1,5 +1,5 @@
-import DOM from "./modules/_dom.js";
-import utils from "./modules/_utils.js";
+import DOM from "./utils/_dom.js";
+import utils from "./utils/_utils.js";
 
 import Api from "./class/Api.js";
 import FilterDropdown from "./class/FilterDropdown.js";
