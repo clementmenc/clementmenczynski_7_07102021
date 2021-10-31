@@ -1,4 +1,4 @@
-import utils from "../utils/_utils.js";
+import utils from "../modules/utils.js";
 
 export default class FilterDropdown{
     constructor(type, items) {
