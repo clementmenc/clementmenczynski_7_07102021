@@ -48,7 +48,6 @@
         grid-template-columns: 1fr;
         display: none;
         gap: 5px 35px;
-        height: 305px;
         overflow: auto;
         z-index: 2;
 
@@ -66,9 +65,16 @@
             grid-template-columns: repeat(3, 1fr);
         }
 
-        & li::first-letter{
-            text-transform: capitalize;
+        & li{
+            cursor: pointer;
+
+            &.local-hidden{ display: none; }
+    
+            &::first-letter{
+                text-transform: capitalize;
+            }
         }
+
 
         &::-webkit-scrollbar { background: none; width: 10px; }
         &::-webkit-scrollbar-thumb {
@@ -96,7 +102,7 @@
 
     &.dd-ingredient{ background-color: $blue; }
     &.dd-appareil{ background-color: $green; }
-    &.dd-ustensil{ background-color: $orange; }
+    &.dd-ustensile{ background-color: $orange; }
 }
 
 

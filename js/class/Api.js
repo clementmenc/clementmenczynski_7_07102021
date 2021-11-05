@@ -28,8 +28,8 @@ export default class Api{
                 recipe.ingredients.map( ingredients => {
                     const ingredient =  ingredients.ingredient;
 
-                    if (!Api.allIngredients.includes(ingredient)) {
-                        Api.allIngredients = [...Api.allIngredients, ingredient];
+                    if (!Api.allIngredients.includes(ingredient.toLowerCase())) {
+                        Api.allIngredients = [...Api.allIngredients, ingredient.toLowerCase()];
                     }
                 })
             })
@@ -46,7 +46,9 @@ export default class Api{
 
         if (Api.allAppliances.length === 0) {
             Api.recipes.forEach(recipe => {
-                Api.allAppliances = [...Api.allAppliances, recipe.appliance];
+                if (!Api.allAppliances.includes(recipe.appliance.toLowerCase())) {
+                    Api.allAppliances = [...Api.allAppliances, recipe.appliance.toLowerCase()];
+                }
             })
         }
 
@@ -60,10 +62,10 @@ export default class Api{
     static getAllUstensils = () => {
         if (Api.allUstensils.length === 0) {
             Api.recipes.forEach(recipe => {
-                recipe.ustensils.map( ustensil => {
+                recipe.ustensils.map( ustensile => {
 
-                    if (!Api.allUstensils.includes(ustensil)) {
-                        Api.allUstensils = [...Api.allUstensils, ustensil];
+                    if (!Api.allUstensils.includes(ustensile.toLowerCase())) {
+                        Api.allUstensils = [...Api.allUstensils, ustensile.toLowerCase()];
                     }
                 })
             })

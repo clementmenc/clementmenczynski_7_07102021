@@ -5,6 +5,7 @@ export default class FilterDropdown{
         this.type = type;
         this.items = items;
         this.label = (type === "ingredient") ? "ingrédient" : type;
+        this.tagList = [];
 
         this.create();
         FilterDropdown.instances = [...FilterDropdown.instances, this];
@@ -29,6 +30,9 @@ export default class FilterDropdown{
         input.setAttribute('name', `${this.type}-input`);
         input.setAttribute('placeholder', `Rechercher un ${this.label}`);
 
+            // Ajout d'un écouteur de saisie dans le champ de recherche
+            input.addEventListener('input', this.search)
+
         // Création du label
         let label = document.createElement('p');
         label.setAttribute('class', 'dropdown-item__label');
@@ -44,9 +48,8 @@ export default class FilterDropdown{
         list.setAttribute('class', `dropdown-item__list ${this.type}-dropdown`);
 
         this.items.forEach(item => {
-            let elem = document.createElement('li');
-            elem.innerText = item;
-            list.appendChild(elem);
+            list.appendChild(item.listElement());
+            this.tagList = [...this.tagList, item];
         });
 
         // Ajout des éléments créer dans le contenant
@@ -59,6 +62,30 @@ export default class FilterDropdown{
         container.addEventListener('click', this.open)
 
         this.element = container;
+    }
+
+    /**
+     * Recherche dans la liste de tags les tags correspondant à la saisie de l'utilisateur
+     * @param {InputEvent} e 
+     */
+    search = (e) => {
+        let content = e.target.value.toLowerCase();
+
+        if (content.length >= 3 || (e.inputType === 'deleteContentBackward' && content.length >= 3)) {
+
+            this.tagList.forEach(tag => {
+                let str = tag.name.toLowerCase();
+                if (str.includes(content)) {
+                    tag.listElementRes.classList.remove('local-hidden');
+                }else{
+                    tag.listElementRes.classList.add('local-hidden');
+                }
+            })
+        }else{
+            this.tagList.forEach(tag => {
+                tag.listElementRes.classList.remove('local-hidden');
+            })
+        }
     }
 
     /**

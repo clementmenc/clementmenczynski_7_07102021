@@ -15,9 +15,9 @@
     color: $white;
     text-transform: capitalize;
 
-    &.tag-ingredients{ background-color: $blue; }
+    &.tag-ingredient{ background-color: $blue; }
     &.tag-appareil{ background-color: $green; }
-    &.tag-ustensiles{ background-color: $orange; }
+    &.tag-ustensile{ background-color: $orange; }
 
     &__icon{
         font-size: 1.25rem;

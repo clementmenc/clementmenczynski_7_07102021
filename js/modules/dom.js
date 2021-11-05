@@ -34,11 +34,20 @@ const insertAfter = (element, target) => {
     target.after(element);
 }
 
+/**
+ * Supprime un élément du dom
+ * @param {HTMLElement} element
+ */
+const remove = (element) => {
+    element.parentNode.removeChild(element);
+}
+
 const dom = {
     append,
     replace,
     insertBefore,
-    insertAfter
+    insertAfter,
+    remove
 }
 
 export default dom;
