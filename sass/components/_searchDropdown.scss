@@ -67,8 +67,9 @@
 
         & li{
             cursor: pointer;
+            background-color: inherit;
 
-            &.local-hidden{ display: none; }
+            &.hidden-by-tags, &.hidden-by-keydown, &.already-selected{ display: none; }
     
             &::first-letter{
                 text-transform: capitalize;

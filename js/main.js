@@ -5,6 +5,7 @@ import Api from "./class/Api.js";
 import FilterDropdown from "./class/FilterDropdown.js";
 import Tags from "./class/Tags.js";
 import Recipe from "./class/Recipe.js";
+import search from "./modules/search.js";
 
 await Api.init();
 
@@ -27,13 +28,16 @@ new FilterDropdown('ustensile', ustensils);
 
 FilterDropdown.instances.forEach(dropdown => {
     DOM.append(dropdown.element, document.getElementById('filters-dropdown'));
-})
+});
 
-
-// Api.getAllRecipes().forEach(recipe => console.log(recipe))
-
-let recipes = Api.getAllRecipes().map(recipe => {
+Api.getAllRecipes().forEach(recipe => {
     let item = new Recipe(recipe);
     DOM.append(item.view(), document.getElementById("recipes-container"));
-    return item;
+});
+
+
+const searchPrincipal = document.getElementById('search-principal__input');
+
+searchPrincipal.addEventListener('input', (e) => {
+    search(Tags.active, Recipe.instances);
 })

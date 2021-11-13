@@ -5,7 +5,7 @@ export default class Recipe{
         this.id = data.id;
         this.name = data.name;
         this.description = data.description;
-        this.appareils = data.appliance;
+        this.appareils = data.appliance.toLowerCase();
         this.ingredients = data.ingredients;
         this.ustensils = data.ustensils;
         this.servings = data.servings;
@@ -78,6 +78,7 @@ export default class Recipe{
      * Bascule la visibilité entre visible et non visible
      */
     toggleVisibility = () => {
-        this.element.classList.toogle('hidden');
+        this.element.classList.toggle('hidden');
+        this.visible = !this.visible;
     }
-} 
+}

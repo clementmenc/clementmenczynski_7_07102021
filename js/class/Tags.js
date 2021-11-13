@@ -1,9 +1,12 @@
 import DOM from "../modules/dom.js";
+import search from "../modules/search.js";
+import Recipe from "./Recipe.js";
+import FilterDropdown from "./FilterDropdown.js";
 
 export default class Tags{
     constructor(type, name) {
         this.type = type;
-        this.name = name;
+        this.name = name.toLowerCase();
     
         Tags.instances = [...Tags.instances, this];
     }
@@ -42,6 +45,7 @@ export default class Tags{
         if (this.listElementRes) { return this.listElementRes; }
 
         let element = document.createElement('li');
+        element.setAttribute('data-value', this.name);
         element.innerText = this.name;
 
         element.addEventListener('click', this.add);
@@ -57,6 +61,9 @@ export default class Tags{
         Tags.active = [...Tags.active, this];
 
         DOM.append(this.tag(), document.getElementById('tags-list'));
+        search(Tags.active, Recipe.instances);
+        this.listElementRes.classList.add('already-selected');
+        FilterDropdown.updateDropDowns();
     }
 
     /**
@@ -64,8 +71,11 @@ export default class Tags{
      */
     delete = () => {
         let newActiveTags = Tags.active.filter(tag => tag !== this);
-        Tags.active = newActiveTags
+        Tags.active = newActiveTags;
 
-        DOM.remove(this.tag())
+        DOM.remove(this.tag());
+        search(Tags.active, Recipe.instances);
+        this.listElementRes.classList.remove('already-selected');
+        FilterDropdown.updateDropDowns();
     }
 }

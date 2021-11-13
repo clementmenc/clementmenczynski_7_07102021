@@ -1,4 +1,5 @@
 import utils from "../modules/utils.js";
+import Recipe from "./Recipe.js";
 
 export default class FilterDropdown{
     constructor(type, items) {
@@ -6,12 +7,13 @@ export default class FilterDropdown{
         this.items = items;
         this.label = (type === "ingredient") ? "ingrédient" : type;
         this.tagList = [];
-
         this.create();
+
         FilterDropdown.instances = [...FilterDropdown.instances, this];
     }
 
     static instances = [];
+
 
     /**
      * Créer la vue du filtre "dropdown"
@@ -47,10 +49,17 @@ export default class FilterDropdown{
         let list = document.createElement('ul');
         list.setAttribute('class', `dropdown-item__list ${this.type}-dropdown`);
 
+        /* let emptyMsg = document.createElement('p');
+        emptyMsg.setAttribute('class', 'emptyMessage');
+        emptyMsg.innerHTML = 'Aucune sélection possible';
+        list.appendChild(emptyMsg); */
+
         this.items.forEach(item => {
             list.appendChild(item.listElement());
             this.tagList = [...this.tagList, item];
         });
+
+        
 
         // Ajout des éléments créer dans le contenant
         container.appendChild(input);
@@ -76,14 +85,14 @@ export default class FilterDropdown{
             this.tagList.forEach(tag => {
                 let str = tag.name.toLowerCase();
                 if (str.includes(content)) {
-                    tag.listElementRes.classList.remove('local-hidden');
+                    tag.listElementRes.classList.remove('hidden-by-keydown');
                 }else{
-                    tag.listElementRes.classList.add('local-hidden');
+                    tag.listElementRes.classList.add('hidden-by-keydown');
                 }
             })
         }else{
             this.tagList.forEach(tag => {
-                tag.listElementRes.classList.remove('local-hidden');
+                tag.listElementRes.classList.remove('hidden-by-keydown');
             })
         }
     }
@@ -109,6 +118,7 @@ export default class FilterDropdown{
             this.element.removeEventListener('click', this.open);
             document.addEventListener('click', this.close);
         }
+
     }
 
     /**
@@ -123,5 +133,29 @@ export default class FilterDropdown{
             document.removeEventListener('click', this.close);
             this.element.addEventListener('click', this.open);
         }
+    }
+
+    static updateDropDowns = () => {
+        let lis = document.querySelectorAll('.dropdown-item__list li');
+        lis.forEach(li => li.classList.add('hidden-by-tags'));
+
+        let recipes = Recipe.instances.filter(recipe => recipe.visible );
+
+        recipes.forEach(recipe => {
+            let appareils = document.querySelectorAll(`.appareil-dropdown [data-value="${recipe.appareils}"]`);
+            appareils.forEach(appareil => appareil.classList.remove('hidden-by-tags'));
+        
+            let ingredients = recipe.ingredients;
+            ingredients.forEach(current => {
+                let ingredientElement = document.querySelector(`.ingredient-dropdown [data-value="${current.ingredient.toLowerCase()}"]`);
+                ingredientElement.classList.remove('hidden-by-tags');
+            })
+
+            let ustensils = recipe.ustensils;
+            ustensils.forEach(current => {
+                let ustensilElement = document.querySelector(`.ustensile-dropdown [data-value="${current.toLowerCase()}"]`);
+                ustensilElement.classList.remove('hidden-by-tags');
+            })
+        })
     }
 }
