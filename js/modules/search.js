@@ -61,7 +61,6 @@ const search = (filters, recipes) => {
                 }
             }
         }
-
         
         if(includes(recipe.element.classList, "hidden") === visible) {
             recipe.toggleVisibility();
