@@ -63,7 +63,7 @@ export default class Tags{
         DOM.append(this.tag(), document.getElementById('tags-list'));
         search(Tags.active, Recipe.instances);
         this.listElementRes.classList.add('already-selected');
-        FilterDropdown.updateDropDowns();
+        // FilterDropdown.updateDropDowns();
     }
 
     /**
@@ -76,6 +76,6 @@ export default class Tags{
         DOM.remove(this.tag());
         search(Tags.active, Recipe.instances);
         this.listElementRes.classList.remove('already-selected');
-        FilterDropdown.updateDropDowns();
+        // FilterDropdown.updateDropDowns();
     }
 }

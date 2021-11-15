@@ -49,15 +49,18 @@ export default class FilterDropdown{
         let list = document.createElement('ul');
         list.setAttribute('class', `dropdown-item__list ${this.type}-dropdown`);
 
-        /* let emptyMsg = document.createElement('p');
-        emptyMsg.setAttribute('class', 'emptyMessage');
-        emptyMsg.innerHTML = 'Aucune sélection possible';
-        list.appendChild(emptyMsg); */
-
+        // Remplissage de la liste
         this.items.forEach(item => {
             list.appendChild(item.listElement());
             this.tagList = [...this.tagList, item];
         });
+
+        // Création et ajout du message "Aucun filtre disponible"
+        let emptyMsg = document.createElement('p');
+        emptyMsg.setAttribute('class', 'empty-msg');
+        emptyMsg.innerText = "Aucun filtre disponible";
+
+        list.appendChild(emptyMsg);
 
         
 
@@ -156,6 +159,35 @@ export default class FilterDropdown{
                 let ustensilElement = document.querySelector(`.ustensile-dropdown [data-value="${current.toLowerCase()}"]`);
                 ustensilElement.classList.remove('hidden-by-tags');
             })
+
         })
+
+        setTimeout(() => {
+            FilterDropdown.showEmptyMessage()  
+        }, 0);
+    }
+
+    static showEmptyMessage = () => {
+        let ingredient = document.querySelectorAll('.ingredient-dropdown li:not(.hidden-by-tags):not(.already-selected)');
+        let appareil = document.querySelectorAll('.appareil-dropdown li:not(.hidden-by-tags):not(.already-selected)');
+        let ustensile = document.querySelectorAll('.ustensile-dropdown li:not(.hidden-by-tags):not(.already-selected)');
+
+        if (appareil.length === 0) {
+            document.querySelector('.appareil-dropdown .empty-msg').classList.add('visible');
+        }else{
+            document.querySelector('.appareil-dropdown .empty-msg').classList.remove('visible');
+        }
+
+        if (ingredient.length === 0) {
+            document.querySelector('.ingredient-dropdown .empty-msg').classList.add('visible');
+        }else{
+            document.querySelector('.ingredient-dropdown .empty-msg').classList.remove('visible');
+        }
+
+        if (ustensile.length === 0) {
+            document.querySelector('.ustensile-dropdown .empty-msg').classList.add('visible');
+        }else{
+            document.querySelector('.ustensile-dropdown .empty-msg').classList.remove('visible');
+        }
     }
 }

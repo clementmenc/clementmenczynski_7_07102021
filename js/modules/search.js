@@ -39,13 +39,16 @@ const search = (filters, recipes) => {
         }
     });
 
+
+    FilterDropdown.updateDropDowns();
+
+
     if (document.querySelectorAll('.recipes-container .recipes:not(.hidden)').length === 0) {
         document.querySelector('.recipes-container .empty-msg').classList.add('visible');
     }else{
         document.querySelector('.recipes-container .empty-msg').classList.remove('visible');
     }
 
-    FilterDropdown.updateDropDowns();
 }
 
 export default search;
