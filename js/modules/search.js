@@ -1,7 +1,7 @@
 import FilterDropdown from '../class/FilterDropdown.js';
-import DOM from './dom.js';
 
 const search = (filters, recipes) => {
+    console.time("algo1");
 
     let principalSearch;
 
@@ -13,12 +13,12 @@ const search = (filters, recipes) => {
         let visible = true;
 
         if (filters !== []) {
-            let superArray = [recipe.appareils.toLowerCase()];
-            superArray = superArray.concat(recipe.ingredients.map(ingredients => ingredients.ingredient.toLowerCase()));
-            superArray = superArray.concat(recipe.ustensils.map(ustensil => ustensil.toLowerCase()));
+            let allFilters = [recipe.appareils.toLowerCase()];
+            allFilters = allFilters.concat(recipe.ingredients.map(ingredients => ingredients.ingredient.toLowerCase()));
+            allFilters = allFilters.concat(recipe.ustensils.map(ustensil => ustensil.toLowerCase()));
 
             filters.forEach(filter => {
-                if(!superArray.includes(filter.name.toLowerCase())){
+                if(!allFilters.includes(filter.name.toLowerCase())){
                     visible = false;
                 }
             })
@@ -39,6 +39,8 @@ const search = (filters, recipes) => {
         }
     });
 
+    
+
 
     FilterDropdown.updateDropDowns();
 
@@ -48,6 +50,8 @@ const search = (filters, recipes) => {
     }else{
         document.querySelector('.recipes-container .empty-msg').classList.remove('visible');
     }
+
+    console.timeEnd("algo1");
 
 }
 
