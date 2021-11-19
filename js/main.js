@@ -39,5 +39,8 @@ Api.getAllRecipes().forEach(recipe => {
 const searchPrincipal = document.getElementById('search-principal__input');
 
 searchPrincipal.addEventListener('input', (e) => {
-    search(Tags.active, Recipe.instances);
+
+    if (e.target.value.length >= 3 || e.inputType === 'deleteContentBackward') {
+        search(Tags.active, Recipe.instances);
+    }
 })

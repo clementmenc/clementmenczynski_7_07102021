@@ -1,21 +1,11 @@
 import FilterDropdown from '../class/FilterDropdown.js';
 
-const includes = (arr, target) => {
-    for (let i = 0; i < arr.length; i++) {
-        let current = arr[i];
-        if (current === target) {
-            return true;
-        }
-    }
-    return false;
-}
-
 const search = (filters, recipes) => {
 
-    let principalSearch;
+    let search;
 
     if (document.getElementById('search-principal__input').value.length >= 3) {
-        principalSearch = document.getElementById('search-principal__input').value
+        search = document.getElementById('search-principal__input').value;
     }
 
     for (let i = 0; i < recipes.length; i++) {
@@ -44,25 +34,24 @@ const search = (filters, recipes) => {
             for (let i = 0; i < filters.length; i++) {
                 let filter = filters[i];
 
-                if(!includes(allFilters, filter.name.toLowerCase())){
+                if(!allFilters.includes(filter.name.toLowerCase())){
                     visible = false;
                 }
             }
         }
 
-        if (principalSearch !== undefined) {
-            let search = principalSearch;
+        if (search !== undefined) {
 
             for (let i = 0; i < recipe.ingredients.length; i++) {
                 const current = recipe.ingredients[i];
 
-                if(!includes(current.ingredient.toLowerCase(), search) && !includes(recipe.description.toLowerCase(), search) && !includes(recipe.name.toLowerCase(), search)){
+                if(!current.ingredient.toLowerCase().includes(search) && !recipe.description.toLowerCase().includes(search) && !recipe.name.toLowerCase().includes(search)){
                     visible = false;
                 }
             }
         }
         
-        if(includes(recipe.element.classList, "hidden") === visible) {
+        if(contains(recipe.element.classList, "hidden") === visible) {
             recipe.toggleVisibility();
         }
     }
