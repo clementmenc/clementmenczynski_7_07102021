@@ -138,6 +138,9 @@ export default class FilterDropdown{
         }
     }
 
+    /**
+     * Met à jour les listes de tag (dropdown ingrédients, appareils et ustensiles)
+     */
     static updateDropDowns = () => {
         let lis = document.querySelectorAll('.dropdown-item__list li');
         lis.forEach(li => li.classList.add('hidden-by-tags'));
@@ -162,11 +165,15 @@ export default class FilterDropdown{
 
         })
 
+        // Ce code ajoute l'exécution de la méthode 'showEmptyMessage' à la fin de la boucle d'evenement JavaScript
         setTimeout(() => {
             FilterDropdown.showEmptyMessage()  
         }, 0);
     }
 
+    /**
+     * Affiche le message 'aucun filtre disponible' à l'utilisateur si besoin
+     */
     static showEmptyMessage = () => {
         let ingredient = document.querySelectorAll('.ingredient-dropdown li:not(.hidden-by-tags):not(.already-selected)');
         let appareil = document.querySelectorAll('.appareil-dropdown li:not(.hidden-by-tags):not(.already-selected)');
