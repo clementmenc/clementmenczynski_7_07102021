@@ -14,7 +14,7 @@ const search = (filters, recipes) => {
         let recipe = recipes[i];
         let visible = true;
 
-        if (filters !== []) {
+        if (filters.length > 0) {
             let appareil = recipe.appareils.toLowerCase();
             let ingredients = recipe.ingredients;
             let ustensils = recipe.ustensils;
