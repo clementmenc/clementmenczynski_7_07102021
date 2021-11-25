@@ -13,6 +13,9 @@ export default class Api{
      */
     static init = async () => {
         const req = await fetch('./recipes.json');
+        if (!req.ok) {
+            throw "Données momentanément indisponible";
+        }
         const data = await req.json();
         Api.recipes = data.recipes;
     }
