@@ -13,6 +13,14 @@
     color: $white;
     border-radius: $borderRadius;
     font-size: 1.125rem;
+
+    &.entries{
+        grid-template-columns: 250px 20px;
+
+        .dropdown-item__list{
+            grid-template-columns: 1fr;
+        }
+    }
     
     &__input{
         display: none;
@@ -106,7 +114,11 @@
         .dropdown-item__icon{ transform: rotate3d(1, 0, 0, 180deg); }
 
         @media screen and (min-width: $desktop){
+            
             width: 667px;
+            &.entries{
+                width: auto;
+            }
         }
     }
 
